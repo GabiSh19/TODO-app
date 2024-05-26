@@ -26,12 +26,32 @@ const loadStore = () => {
     throw new Error('Not implemented');
 }
 
+const getTodos = ( filter = Filters.Allll ) => {
+    switch (filter) {
+        case Filters.All:
+            return [...state.todos];
+
+        case Filters.Completed:
+            return state.todos.filter( todo => todo.done);
+
+        case Filters.Pending:
+            return state.todos.filter( todo => !todo.done);
+
+        default:
+            throw new Error(`Option ${filter} is not valid`);
+    }
+
+
+}
+
+
 /**
  * 
  * @param {String} description 
  */
 const addTodo = (description) => {
-    throw new Error('Not implemented');
+    if ( !description ) throw new Error('Description is required');
+    state.todos.push ( new Todo( description ) );
 };
 
 /**
@@ -47,19 +67,26 @@ const toggleTodo = (todoId) => {
  * @param {String} todoId 
  */
 const deletedTodo = (todoId) => {
-    throw new Error('Not implemented');
+    states.todos = state.todos.filter( todo => todo.id !== todoId );
 }
 
 const deleteCompleted = () => {
-    throw new Error('Not implemented');
+    states.todos = state.todos.filter( todo => todo.done );
+    
 }
 
+/**
+ * 
+ * @param {Filters} newFilter 
+ */
 const setFilter = ( newFilter = Filters.All ) => {
-    throw new Error('Not implemented');
+    //Para hacer una validación podríamos hacerlo así:
+    //Averiguar: ** Objetc.key(Filters).include ....
+    state.filter = newFilter;
 }
 
 const getCurrentFilter = () => {
-    throw new Error('Not implemented');
+    return state.filter;
 }
 
 
@@ -68,6 +95,7 @@ export default {
     deleteCompleted, 
     deletedTodo, 
     getCurrentFilter, 
+    getTodos, 
     initStore,
     loadStore, 
     loadStore, 
