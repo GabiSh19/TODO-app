@@ -1,3 +1,6 @@
+import { v4 as uuid } from 'uuid';
+
+
 export class Todo {
 
     /**
@@ -6,7 +9,8 @@ export class Todo {
      */
 
     constructor ( descripcion ){
-        this.id = 1;
+        // Usamos uuid para identificar de forma única cada una de las tareas.
+        this.id = uuid();
         this.descripcion = descripcion;
         this.done = false;
         this.createdAt = new Date();
