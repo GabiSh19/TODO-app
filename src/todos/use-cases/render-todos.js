@@ -1,4 +1,5 @@
 import { Todo } from '../models/todo.model';
+import { createTodoHTML } from './'
 
 /**
  * 
@@ -9,6 +10,11 @@ import { Todo } from '../models/todo.model';
 export const renderTodos = ( elementId, todos = [] ) => {
 
 
+    //TODO referencia 
+const element = docuemnt.querySelector( elementId )
 
+    todos.forEach( todo => {
+        element.append (create);
+    });
 
 }

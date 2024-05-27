@@ -14,7 +14,7 @@ export const App = (elementId) => {
 
     const displayTodos = () => {
         const todos = todoStore.getTodos();
-        renderTodos( ElementIDs.TodoList );
+        renderTodos( ElementIDs.TodoList, todos );
 
     }
 
