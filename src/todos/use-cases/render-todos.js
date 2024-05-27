@@ -1,5 +1,5 @@
 import { Todo } from '../models/todo.model';
-import { createTodoHTML } from './'
+import { createTodoHTML } from './create-todo-html'
 
 /**
  * 
@@ -8,13 +8,11 @@ import { createTodoHTML } from './'
  */
 
 export const renderTodos = ( elementId, todos = [] ) => {
-
-
     //TODO referencia 
-const element = docuemnt.querySelector( elementId )
+    const element = document.querySelector( elementId )
+        todos.forEach( todo => {
+            element.append(createTodoHTML(todo));
+        });
 
-    todos.forEach( todo => {
-        element.append (create);
-    });
 
 }
