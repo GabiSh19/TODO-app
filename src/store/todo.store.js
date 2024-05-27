@@ -59,7 +59,15 @@ const addTodo = (description) => {
  * @param {String} todoId 
  */
 const toggleTodo = (todoId) => {
-    throw new Error('Not implemented');
+    // El map Regresa los nuevos valores que va a tener ese arreglo. Regresa un nuev arreglo.
+    // El único problema con el map es que si tenemos 1000 todos, barreriamos todo. con un find podríamos arreglar eso.
+    state.todos = state.todos.map ( todo => {
+        if ( todo.id === todoId ) {
+            todo.done = !todo.done;
+        }
+        // Tengo que regresar esa instancia.
+        return todo;
+    });
 }
 
 /**
@@ -87,7 +95,7 @@ const setFilter = ( newFilter = Filters.All ) => {
 
 const getCurrentFilter = () => {
     return state.filter;
-}
+}       
 
 
 export default {
