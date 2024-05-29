@@ -32,6 +32,7 @@ export const App = (elementId) => {
 
     // Referencias HTML 
     const newDescriptionInput =  document.querySelector( ElementIDs.NewTodoInput );
+    const todoListUL =  document.querySelector( ElementIDs.TodoList );
 
     //Listeners 
     newDescriptionInput.addEventListener('keyup', (event) => {
@@ -43,6 +44,21 @@ export const App = (elementId) => {
         event.target.value = '';
 
     })
+
+    todoListUL.addEventListener('keyup', (event) => {
+        // console.log(event.target);
+        //closest: que busque el padre más cercano que tenga esta data-id. No para abajo, si no el padre. 
+        const element = event.target.closest('[data-id]');
+        //necesito extraer el id. 
+        // console.log(element.getAttribute('data-id'));
+        todoStore.toggleTodo((element.getAttribute('data-id')));
+        displayTodos();
+
+
+
+    })
+
+
 
 
 } 
