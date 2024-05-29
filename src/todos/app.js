@@ -45,7 +45,7 @@ export const App = (elementId) => {
 
     })
 
-    todoListUL.addEventListener('keyup', (event) => {
+    todoListUL.addEventListener('click', (event) => {
         // console.log(event.target);
         //closest: que busque el padre más cercano que tenga esta data-id. No para abajo, si no el padre. 
         const element = event.target.closest('[data-id]');
@@ -54,10 +54,20 @@ export const App = (elementId) => {
         todoStore.toggleTodo((element.getAttribute('data-id')));
         displayTodos();
 
+    })
+    
+    // Función para borrar Todo
+    
+    todoListUL.addEventListener('click', (event) => {
+        const isDestroyElement = event.target.className === 'destroy';
+        const element = event.target.closest('[data-id]');
+        
+        if (!element || !isDestroyElement) return;
 
+        todoStore.deletedTodo (element.getAttribute('data-id'));
+        displayTodos();
 
     })
-
 
 
 
