@@ -1,6 +1,6 @@
 import { Todo } from '../todos/models/todo.model';
 
-const Filters = {
+export const Filters = {
     All: 'all',
     Completed: 'Completed', 
     Pending: 'Pending'
@@ -23,7 +23,7 @@ const initStore = () => {
 }
 
 const loadStore = () => {
-    if (!localStorage.getItem() ) return; 
+    if (!localStorage.getItem('state') ) return; 
 
     const { todos = [], filter = Filters.All} = JSON.parse( localStorage.getItem('state') );
     state.todos = todos;
@@ -86,12 +86,12 @@ const toggleTodo = (todoId) => {
  * @param {String} todoId 
  */
 const deletedTodo = (todoId) => {
-    states.todos = state.todos.filter( todo => todo.id !== todoId );
+    state.todos = state.todos.filter( todo => todo.id !== todoId );
     saveStateToLocalStorage();
 }
 
 const deleteCompleted = () => {
-    states.todos = state.todos.filter( todo => todo.done );
+    state.todos = state.todos.filter( todo => !todo.done );
     saveStateToLocalStorage();
     
 }
